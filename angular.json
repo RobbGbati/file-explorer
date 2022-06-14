@@ -28,9 +28,20 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/primeng-lts/resources/primeng.min.css",
+              "./node_modules/primeflex/primeflex.css",
+              "./node_modules/primeng-lts/resources/themes/arya-green/theme.css",
+              "./node_modules/primeicons/primeicons.css",
+              "node_modules/eva-icons/style/eva-icons.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/eva-icons/eva.min.js",
+              "node_modules/eva-icons/eva.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

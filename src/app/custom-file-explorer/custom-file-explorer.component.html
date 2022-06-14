@@ -1,0 +1,27 @@
+<p-toolbar >
+  <div class="p-toolbar-group-left">
+    <p-button icon="pi pi-arrow-circle-left" *ngIf="canNavigateUp" (onClick)="navigateUp()"></p-button>
+    <span class="text-white" style="margin-left: 8px;">{{path || 'Files' }}</span>
+  </div>
+  <div class="p-toolbar-group-right">
+    <input hidden #file pInputText type="file" (change)="selectFile($event)" >
+    <p-button icon="eva eva-cloud-upload-outline md-1" (onClick)="upload()"></p-button>
+    <p-button icon="eva eva-folder-add-outline" (onClick)="openNewFolderDialog()"></p-button>
+  </div>
+</p-toolbar>
+
+<div class="container mt-2">
+  <div class="grid">
+    <p-contextMenu #cm [model]="menuItems" appendTo="body" ></p-contextMenu>
+    <div class="col-4 file-or-folder shadow-12" *ngFor="let el of fileElements;">
+      <div id="{{el.name}}" (contextmenu)="show(cm, $event, el)" (click)="navigate(el)" class="pointer">
+        <i *ngIf="el.isFolder" class="eva eva-folder-outline file-or-folder-icon"></i>
+        <i *ngIf="!el.isFolder" class="eva eva-file-text-outline file-or-folder-icon"></i>
+        <div class="center text-white">{{el.name}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-new-folder-dialog *ngIf="display1" [(display)]="display1" (afterCreated)="closeNewFolderDialog($event)" (onHide)="display1 = false"></app-new-folder-dialog>
+<app-rename-dialog *ngIf="display2" [element]="selected" [(display)]="display2" (afterRenamed)="closeRenameDialog($event)" (onHide)="display2 = false"></app-rename-dialog>

@@ -1,0 +1,13 @@
+<p-card [style]="{'width': '640px'}">
+  <app-custom-file-explorer
+    [fileElements]="fileElements | async"
+    [path]="currentPath"
+    [canNavigateUp]="canNavigateUp"
+    (folderAdded)="addFolder($event)"
+    (elementMoved)="moveElement($event)"
+    (navigatedDown)="navigateToFolder($event)"
+    (navigatedUp)="navigateUp()"
+    (elementRenamed)="renameElement($event)"
+    (elementRemoved)="removeElement($event)"
+  ></app-custom-file-explorer>
+</p-card>

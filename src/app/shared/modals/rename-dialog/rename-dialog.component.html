@@ -1,0 +1,12 @@
+<p-dialog [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [resizable]="false" (onHide)="hideDialog()">
+  <p-header>
+      Renommer l'élement
+  </p-header>
+  <div class="p-grid p-col">
+    <input pInputText type="text" [(ngModel)]="folderName">
+  </div>
+  <p-footer>
+      <p-button label="Annuler" (onClick)="hideDialog()"></p-button>
+      <p-button label="OK"(onClick)="rename()" ></p-button>
+  </p-footer>
+</p-dialog>
