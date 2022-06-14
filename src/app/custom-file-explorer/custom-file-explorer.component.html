@@ -1,12 +1,12 @@
 <p-toolbar >
   <div class="p-toolbar-group-left">
     <p-button icon="pi pi-arrow-circle-left" *ngIf="canNavigateUp" (onClick)="navigateUp()"></p-button>
-    <span class="text-white" style="margin-left: 8px;">{{path || 'Files' }}</span>
+    <span class="text-white" style="margin-left: 8px;">{{path || 'Accueil' }}</span>
   </div>
   <div class="p-toolbar-group-right">
-    <input hidden #file pInputText type="file" (change)="selectFile($event)" >
-    <p-button icon="eva eva-cloud-upload-outline md-1" (onClick)="upload()"></p-button>
-    <p-button icon="eva eva-folder-add-outline" (onClick)="openNewFolderDialog()"></p-button>
+    <input hidden #file pInputText type="file" (change)="upload($event)" >
+    <p-button icon="eva eva-cloud-upload-outline md-1" (onClick)="file.click()"></p-button>
+    <p-button class="ml-1" icon="eva eva-folder-add-outline" (onClick)="openNewFolderDialog()"></p-button>
   </div>
 </p-toolbar>
 

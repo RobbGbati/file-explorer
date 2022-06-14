@@ -14,7 +14,7 @@ import { PrimeNgModule } from './primeng.module';
     PrimeNgModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     NewFolderDialogComponent,

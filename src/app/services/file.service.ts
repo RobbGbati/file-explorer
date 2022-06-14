@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class FileService {
 
   private map = new Map<string, FileElement>();
+  private querySubject: BehaviorSubject<FileElement[]>;
 
   constructor() {}
 
@@ -33,7 +34,7 @@ export class FileService {
     return this.map.get(id);
   }
 
-  private querySubject: BehaviorSubject<FileElement[]>
+
   queryInFolder(folderId: string) {
     const result: FileElement[] = []
     this.map.forEach(element => {
@@ -48,4 +49,11 @@ export class FileService {
     }
     return this.querySubject.asObservable()
   }
+
+  search(name) {
+    let array = Array.from(this.map.values());
+    array = array.filter((item) => item.name.includes(name));
+    this.querySubject = new BehaviorSubject(array);
+    return this.querySubject.asObservable();
+    }
 }

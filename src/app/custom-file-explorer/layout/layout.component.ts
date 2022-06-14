@@ -14,10 +14,16 @@ export class LayoutComponent implements OnInit {
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
+  file: File;
+  loading: boolean = true;
+  searchText: string;
 
   constructor(private fileService: FileService) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loading = false
+    }, 5000);
   }
 
   addFolder(folder: {name: string}) {
@@ -80,6 +86,26 @@ export class LayoutComponent implements OnInit {
     split.splice(split.length - 2, 1);
     p = split.join('/');
     return p;
+  }
+
+  uploadFile(event) {
+    this.file = event.target.files[0];
+    // TODO: faire le traitement backend après
+    this.fileService.add({
+      isFolder: false,
+      name: this.file.name,
+      parent: this.currentRoot ? this.currentRoot.id: 'root'
+    });
+    this.updateFileElementQuery();
+
+  }
+
+  downloadFile(element: FileElement) {
+    const idFile = element.id;
+  }
+
+  searchItem(event) {
+    this.fileElements = this.fileService.search(event);
   }
 
 }

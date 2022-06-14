@@ -25,6 +25,8 @@ export class CustomFileExplorerComponent implements OnInit{
   @Output() elementMoved = new EventEmitter<{from: FileElement, moveTo: FileElement}>();
   @Output() navigatedDown = new EventEmitter<FileElement>();
   @Output() navigatedUp = new EventEmitter();
+  @Output() fileUploaded = new EventEmitter<any>();
+  @Output() download = new EventEmitter<any>();
   @ViewChild('cm', { static: true }) public cm: ContextMenu;
 
   display1:boolean = false;
@@ -56,6 +58,14 @@ export class CustomFileExplorerComponent implements OnInit{
         }
       },
       {
+        disabled: this.selected?.isFolder,
+        label: 'Télécharger',
+        icon: 'eva eva-cloud-download-outline',
+        command: () => {
+          this.downloadFile(this.selected)
+        }
+      },
+      {
         label: 'Supprimer',
         icon: 'eva eva-trash-2-outline',
         command: () => {
@@ -63,6 +73,10 @@ export class CustomFileExplorerComponent implements OnInit{
         }
       }
     ];
+  }
+
+  downloadFile(element: FileElement) {
+    this.download.emit(element);
   }
 
   deleteElement(element: FileElement) {
@@ -133,12 +147,8 @@ export class CustomFileExplorerComponent implements OnInit{
     cm.show(event)
   }
 
-  selectFile($event) {
-
-  }
-
-  upload() {
-
+  upload(event) {
+    this.fileUploaded.emit(event);
   }
 
 }
